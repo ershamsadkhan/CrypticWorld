@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Ecosystem Simplified</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.95em;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .flow-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 150px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.05);
+        }
+
+        .flow-step.step1 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .flow-step.step2 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .flow-step.step3 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .flow-step.step4 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #333;
+        }
+
+        .arrow {
+            color: #667eea;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Explanation Section */
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .explanation-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .explanation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .explanation-card h3 {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .explanation-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .example-box {
+            background: #f0f4ff;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #333;
+            margin-top: 15px;
+        }
+
+        .example-box strong {
+            color: #667eea;
+        }
+
+        .icon {
+            font-size: 1.3em;
+        }
+
+        /* Cryptos Grid */
+        .cryptos-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .cryptos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .crypto-simple-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .crypto-simple-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .crypto-header-simple {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+        }
+
+        .crypto-icon-simple {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .crypto-header-simple.btc {
+            background: linear-gradient(135deg, #f7931a 0%, #e67e22 100%);
+        }
+
+        .crypto-header-simple.eth {
+            background: linear-gradient(135deg, #627eea 0%, #5a67d8 100%);
+        }
+
+        .crypto-header-simple.sol {
+            background: linear-gradient(135deg, #14f195 0%, #00d4ff 100%);
+            color: #000;
+        }
+
+        .crypto-header-simple.bnb {
+            background: linear-gradient(135deg, #f3ba2f 0%, #e8a717 100%);
+            color: #000;
+        }
+
+        .crypto-header-simple.ada {
+            background: linear-gradient(135deg, #0033ad 0%, #002080 100%);
+        }
+
+        .crypto-header-simple.polygon {
+            background: linear-gradient(135deg, #8247e5 0%, #6c3ac5 100%);
+        }
+
+        .crypto-header-simple.base {
+            background: linear-gradient(135deg, #0052ff 0%, #0035cc 100%);
+        }
+
+        .crypto-content {
+            padding: 20px;
+        }
+
+        .crypto-info {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .service-type {
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #667eea;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .service-badge {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #667eea;
+        }
+
+        .service-badge a {
+            color: inherit;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .service-badge a:hover {
+            text-decoration: underline;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .comparison-table tr:hover {
+            background: #f0f4ff;
+        }
+
+        .check {
+            color: #43e97b;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            border-left: 6px solid #43e97b;
+        }
+
+        .tips-section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .tip-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f0f9f7;
+            border-left: 4px solid #43e97b;
+            border-radius: 5px;
+        }
+
+        .tip-item strong {
+            color: #43e97b;
+            font-size: 1.05em;
+        }
+
+        .tip-item p {
+            color: #555;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .comparison-section {
+                overflow-x: auto;
+            }
+
+            .comparison-table {
+                font-size: 0.8em;
+            }
+
+            .comparison-table th, .comparison-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Crypto Ecosystem Simplified</h1>
+            <p>A Beginner's Guide to Decentralized Crypto Trading</p>
+            <p class="subtitle">Learn how cryptos, exchanges, aggregators, and wallets work together</p>
+        </header>
+
+        <!-- Flow Diagram -->
+        <div class="flow-diagram">
+            <div class="flow-title">How Crypto Trading Works (Step-by-Step)</div>
+            <div class="flow-steps">
+                <div class="flow-step step1">
+                    1️⃣ Choose Your Wallet
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-step step2">
+                    2️⃣ Select a Crypto
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-step step3">
+                    3️⃣ Find Best Price
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-step step4">
+                    4️⃣ Execute Trade
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Concepts -->
+        <div class="explanation-grid">
+            <div class="explanation-card">
+                <h3><span class="icon">👛</span> What is a Wallet?</h3>
+                <p>Your digital wallet is like a bank account for cryptocurrency. It holds your funds and lets you buy, sell, and trade.</p>
+                <div class="example-box">
+                    <strong>Examples:</strong> MetaMask, Rabby, Phantom, Ledger, Trust Wallet
+                    <br><strong>Think of it as:</strong> Your crypto bank account
+                </div>
+            </div>
+
+            <div class="explanation-card">
+                <h3><span class="icon">💱</span> What is a DEX?</h3>
+                <p>A Decentralized Exchange (DEX) is a platform where you can directly swap one cryptocurrency for another, without a middleman.</p>
+                <div class="example-box">
+                    <strong>Examples:</strong> Uniswap, SushiSwap, PancakeSwap
+                    <br><strong>Think of it as:</strong> A crypto marketplace
+                </div>
+            </div>
+
+            <div class="explanation-card">
+                <h3><span class="icon">🔄</span> What is an Aggregator?</h3>
+                <p>An aggregator searches across multiple DEXs to find the best price for your trade. It's like a price comparison website.</p>
+                <div class="example-box">
+                    <strong>Examples:</strong> 1inch, Jupiter, ParaSwap
+                    <br><strong>Think of it as:</strong> Shopping assistant that finds the best deal
+                </div>
+            </div>
+
+            <div class="explanation-card">
+                <h3><span class="icon">⛓️</span> What is a Blockchain?</h3>
+                <p>A blockchain is a network where crypto lives and transactions happen. Different coins use different blockchains.</p>
+                <div class="example-box">
+                    <strong>Examples:</strong> Bitcoin, Ethereum, Solana, BNB Chain
+                    <br><strong>Think of it as:</strong> Different countries with their own currency
+                </div>
+            </div>
+
+            <div class="explanation-card">
+                <h3><span class="icon">🔗</span> What is Layer 2?</h3>
+                <p>A Layer 2 is built on top of a blockchain to make transactions faster and cheaper while still being secure.</p>
+                <div class="example-box">
+                    <strong>Examples:</strong> Polygon (on Ethereum), Base (on Ethereum)
+                    <br><strong>Think of it as:</strong> Express lane on a highway
+                </div>
+            </div>
+
+            <div class="explanation-card">
+                <h3><span class="icon">✅</span> Why Decentralized?</h3>
+                <p>Decentralized means NO company controls your money. YOU are in control. More secure, more private, more freedom.</p>
+                <div class="example-box">
+                    <strong>Benefits:</strong> Full control, Lower fees, 24/7 trading, No bank account needed
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Cryptocurrencies -->
+        <div class="cryptos-section">
+            <h2 class="section-title">7 Popular Cryptocurrencies & Their Ecosystems</h2>
+            <div class="cryptos-grid">
+                <!-- Bitcoin -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple btc">
+                        <div class="crypto-icon-simple">₿</div>
+                        <div>
+                            <div>Bitcoin</div>
+                            <div style="font-size: 0.7em;">The Original Crypto</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 1 • Most Secure</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 DEXs</div>
+                                <div>
+                                    <span class="service-badge">Bisq</span>
+                                    <span class="service-badge">RoboSats</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">Electrum</span>
+                                    <span class="service-badge">BlueWallet</span>
+                                    <span class="service-badge">Ledger</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://www.blockchain.com/explorer" target="_blank" rel="noopener">Blockchain.com</a></span>
+                                    <span class="service-badge"><a href="https://mempool.space/" target="_blank" rel="noopener">Mempool.space</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ethereum -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple eth">
+                        <div class="crypto-icon-simple">Ξ</div>
+                        <div>
+                            <div>Ethereum</div>
+                            <div style="font-size: 0.7em;">Smart Contracts</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 1 • Most DApps</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 Popular DEXs</div>
+                                <div>
+                                    <span class="service-badge">Uniswap</span>
+                                    <span class="service-badge">Curve</span>
+                                    <span class="service-badge">Balancer</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔄 Aggregators</div>
+                                <div>
+                                    <span class="service-badge">1inch</span>
+                                    <span class="service-badge">ParaSwap</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">MetaMask</span>
+                                    <span class="service-badge">Rabby</span>
+                                    <span class="service-badge">Ledger</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://etherscan.io/" target="_blank" rel="noopener">Etherscan</a></span>
+                                    <span class="service-badge"><a href="https://blockscout.com/" target="_blank" rel="noopener">Blockscout</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solana -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple sol">
+                        <div class="crypto-icon-simple">◎</div>
+                        <div>
+                            <div>Solana</div>
+                            <div style="font-size: 0.7em;">Super Fast & Cheap</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 1 • High Speed</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 Popular DEXs</div>
+                                <div>
+                                    <span class="service-badge">Orca</span>
+                                    <span class="service-badge">Raydium</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔄 Aggregator</div>
+                                <div>
+                                    <span class="service-badge">Jupiter</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">Phantom</span>
+                                    <span class="service-badge">Solflare</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://solscan.io/" target="_blank" rel="noopener">Solscan</a></span>
+                                    <span class="service-badge"><a href="https://explorer.solana.com/" target="_blank" rel="noopener">Solana Explorer</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BNB Chain -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple bnb">
+                        <div class="crypto-icon-simple">◆</div>
+                        <div>
+                            <div>BNB Chain</div>
+                            <div style="font-size: 0.7em;">Binance Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 1 • High Volume</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 Popular DEX</div>
+                                <div>
+                                    <span class="service-badge">PancakeSwap</span>
+                                    <span class="service-badge">Uniswap</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔄 Aggregators</div>
+                                <div>
+                                    <span class="service-badge">1inch</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">MetaMask</span>
+                                    <span class="service-badge">Rabby</span>
+                                    <span class="service-badge">Trust Wallet</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://bscscan.com/" target="_blank" rel="noopener">BscScan</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cardano -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple ada">
+                        <div class="crypto-icon-simple">₳</div>
+                        <div>
+                            <div>Cardano</div>
+                            <div style="font-size: 0.7em;">Research-Focused</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 1 • Scientific</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 Popular DEXs</div>
+                                <div>
+                                    <span class="service-badge">Minswap</span>
+                                    <span class="service-badge">SundaeSwap</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">Nami</span>
+                                    <span class="service-badge">Eternl</span>
+                                    <span class="service-badge">Yoroi</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://cardanoscan.io/" target="_blank" rel="noopener">CardanoScan</a></span>
+                                    <span class="service-badge"><a href="https://adaex.org/" target="_blank" rel="noopener">AdaScan</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polygon -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple polygon">
+                        <div class="crypto-icon-simple">◈</div>
+                        <div>
+                            <div>Polygon</div>
+                            <div style="font-size: 0.7em;">Ethereum Sidechain</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 2 • Cheaper ETH</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 Popular DEXs</div>
+                                <div>
+                                    <span class="service-badge">QuickSwap</span>
+                                    <span class="service-badge">Uniswap</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔄 Aggregators</div>
+                                <div>
+                                    <span class="service-badge">1inch</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">MetaMask</span>
+                                    <span class="service-badge">Rabby</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://polygonscan.com/" target="_blank" rel="noopener">PolygonScan</a></span>
+                                    <span class="service-badge"><a href="https://explorer-mainnet.maticvigil.com/" target="_blank" rel="noopener">Matic Vigil</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Base -->
+                <div class="crypto-simple-card">
+                    <div class="crypto-header-simple base">
+                        <div class="crypto-icon-simple">ⓑ</div>
+                        <div>
+                            <div>Base</div>
+                            <div style="font-size: 0.7em;">Coinbase Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-content">
+                        <div class="crypto-info">Layer 2 • Easy Entry</div>
+                        <div class="services-list">
+                            <div>
+                                <div class="service-type">💱 Popular DEXs</div>
+                                <div>
+                                    <span class="service-badge">Uniswap</span>
+                                    <span class="service-badge">Aerodrome</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔄 Aggregators</div>
+                                <div>
+                                    <span class="service-badge">1inch</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">👛 Wallets</div>
+                                <div>
+                                    <span class="service-badge">MetaMask</span>
+                                    <span class="service-badge">Rabby</span>
+                                    <span class="service-badge">Coinbase Wallet</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="service-type">🔎 Explorer</div>
+                                <div>
+                                    <span class="service-badge"><a href="https://base.blockscout.com/" target="_blank" rel="noopener">Base Blockscout</a></span>
+                                    <span class="service-badge"><a href="https://explorer.base.org/" target="_blank" rel="noopener">Base Explorer</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2 style="color: #2c3e50; margin-bottom: 25px; font-size: 1.8em;">Quick Comparison: DEXs vs Aggregators</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>DEX (Direct)</th>
+                        <th>Aggregator</th>
+                        <th>Best For?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Trading On</strong></td>
+                        <td>One exchange</td>
+                        <td>Multiple exchanges</td>
+                        <td>Aggregator saves money</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price Finding</strong></td>
+                        <td>Manual checking</td>
+                        <td>Automatic comparison</td>
+                        <td>Aggregator is easier</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Speed</strong></td>
+                        <td>Quick ✓</td>
+                        <td>Quick ✓</td>
+                        <td>Both are fast</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fees</strong></td>
+                        <td>Exchange fees</td>
+                        <td>Exchange + routing fees</td>
+                        <td>DEX slightly cheaper</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best Price</strong></td>
+                        <td>May vary</td>
+                        <td><span class="check">✓ Optimized</span></td>
+                        <td>Aggregator wins</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complexity</strong></td>
+                        <td>Simple</td>
+                        <td>Automated</td>
+                        <td>Both beginner-friendly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-section">
+            <h2>💡 Key Takeaways for Teaching Others</h2>
+            
+            <div class="tip-item">
+                <strong>1. Wallets Are Your Control</strong>
+                <p>Unlike traditional banks, you have complete control. Your wallet = your money. Keep your recovery phrases safe and never share them with anyone!</p>
+            </div>
+
+            <div class="tip-item">
+                <strong>2. DEXs Are Marketplaces</strong>
+                <p>Think of DEXs like farmers markets where buyers and sellers meet directly. No middleman takes a cut (except the DEX's small fee).</p>
+            </div>
+
+            <div class="tip-item">
+                <strong>3. Aggregators Save You Money</strong>
+                <p>Always use an aggregator for large trades! They'll find the best price across all DEXs, often saving you 1-5% on your transaction.</p>
+            </div>
+
+            <div class="tip-item">
+                <strong>4. Multiple Chains = Multiple Options</strong>
+                <p>Bitcoin, Ethereum, Solana, etc. are like different countries. Each has its own ecosystem, exchanges, and advantages. Bitcoin is most secure. Solana is fastest. Ethereum has most options.</p>
+            </div>
+
+            <div class="tip-item">
+                <strong>5. Layer 2 = Cheaper & Faster</strong>
+                <p>Polygon, Base, and others are "highways on top of highways." Lower fees, faster transactions, but still secure because they're connected to Layer 1.</p>
+            </div>
+
+            <div class="tip-item">
+                <strong>6. Start Small</strong>
+                <p>When teaching beginners: Start with small amounts. Use testnets first. MetaMask is the easiest wallet to start with on Ethereum.</p>
+            </div>
+
+            <div class="tip-item">
+                <strong>7. Security First</strong>
+                <p>Never share private keys or recovery phrases. Only use official wallets from trusted sources. Bookmark DEX websites to avoid phishing scams.</p>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Ready to Trade?</h3>
+            <p>Pick a wallet → Choose a chain → Find your DEX/Aggregator → Start trading safely! 🚀</p>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #999;">Last Updated: June 2026 | All trading involves risk. Do your own research!</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<section class="stats" *ngIf="stats">
+  <div class="card">
+    <span class="label">Win Rate</span>
+    <span class="value">{{ stats.winRate | number: '1.1-1' }}%</span>
+  </div>
+  <div class="card">
+    <span class="label">Realized PnL</span>
+    <span class="value" [class.positive]="stats.realizedPnLInQuote > 0" [class.negative]="stats.realizedPnLInQuote < 0">
+      {{ stats.realizedPnLInQuote | number: '1.4-4' }}
+    </span>
+  </div>
+  <div class="card">
+    <span class="label">Unrealized PnL</span>
+    <span class="value" [class.positive]="stats.unrealizedPnLInQuote > 0" [class.negative]="stats.unrealizedPnLInQuote < 0">
+      {{ stats.unrealizedPnLInQuote | number: '1.4-4' }}
+    </span>
+  </div>
+  <div class="card">
+    <span class="label">Total Trades</span>
+    <span class="value">{{ stats.totalTrades }}</span>
+  </div>
+</section>
+
+<p class="no-stats" *ngIf="!stats">No trades indexed yet for this wallet — stats will appear once activity is detected.</p>
+
+<section class="alerts" *ngIf="alerts.length > 0">
+  <h2>New Token Alerts</h2>
+  <ul>
+    <li *ngFor="let alert of alerts">
+      🆕 {{ alert.tokenSymbol || alert.tokenAddress }} — first seen {{ alert.firstSeenAt | date: 'short' }}
+    </li>
+  </ul>
+</section>
+
+<section class="trades">
+  <h2>Trade History</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Direction</th>
+        <th>Token</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Tx</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trade of trades">
+        <td>{{ trade.blockTime | date: 'short' }}</td>
+        <td [class.buy]="trade.direction === TradeDirection.Buy" [class.sell]="trade.direction === TradeDirection.Sell">
+          {{ trade.direction === TradeDirection.Buy ? 'BUY' : 'SELL' }}
+        </td>
+        <td>{{ trade.tokenSymbol || trade.tokenAddress }}</td>
+        <td>{{ trade.amountToken | number: '1.2-6' }}</td>
+        <td>{{ trade.pricePerTokenInQuote | number: '1.2-8' }}</td>
+        <td class="tx-hash">{{ trade.txHash }}</td>
+      </tr>
+      <tr *ngIf="trades.length === 0">
+        <td colspan="6">No trades yet.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

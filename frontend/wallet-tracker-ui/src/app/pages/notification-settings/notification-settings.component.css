@@ -1,0 +1,24 @@
+.channel {
+  background: #f5f6fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+.channel input:not([type="checkbox"]) {
+  padding: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.status {
+  font-weight: 600;
+  color: #1e8e3e;
+}

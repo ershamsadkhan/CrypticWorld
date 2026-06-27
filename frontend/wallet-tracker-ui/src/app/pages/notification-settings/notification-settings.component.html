@@ -1,0 +1,41 @@
+<p class="status" *ngIf="statusMessage">{{ statusMessage }}</p>
+
+<section class="channel">
+  <h2>Telegram</h2>
+  <label>
+    <input type="checkbox" [(ngModel)]="telegramEnabled" name="telegramEnabled" /> Enabled
+  </label>
+  <input [(ngModel)]="telegram.botToken" name="botToken" placeholder="Bot Token" />
+  <input [(ngModel)]="telegram.chatId" name="chatId" placeholder="Chat ID" />
+  <div class="actions">
+    <button (click)="saveTelegram()">Save</button>
+    <button (click)="testChannel(0)">Send Test</button>
+  </div>
+</section>
+
+<section class="channel">
+  <h2>Discord</h2>
+  <label>
+    <input type="checkbox" [(ngModel)]="discordEnabled" name="discordEnabled" /> Enabled
+  </label>
+  <input [(ngModel)]="discord.webhookUrl" name="webhookUrl" placeholder="Webhook URL" />
+  <div class="actions">
+    <button (click)="saveDiscord()">Save</button>
+    <button (click)="testChannel(1)">Send Test</button>
+  </div>
+</section>
+
+<section class="channel">
+  <h2>WhatsApp (Twilio)</h2>
+  <label>
+    <input type="checkbox" [(ngModel)]="whatsAppEnabled" name="whatsAppEnabled" /> Enabled
+  </label>
+  <input [(ngModel)]="whatsApp.accountSid" name="accountSid" placeholder="Account SID" />
+  <input [(ngModel)]="whatsApp.authToken" name="authToken" placeholder="Auth Token" type="password" />
+  <input [(ngModel)]="whatsApp.fromNumber" name="fromNumber" placeholder="From Number (e.g. +14155238886)" />
+  <input [(ngModel)]="whatsApp.toNumber" name="toNumber" placeholder="To Number" />
+  <div class="actions">
+    <button (click)="saveWhatsApp()">Save</button>
+    <button (click)="testChannel(2)">Send Test</button>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<section class="add-wallet">
+  <h2>Track a Wallet</h2>
+  <form (ngSubmit)="addWallet()">
+    <input [(ngModel)]="newAddress" name="address" placeholder="Wallet address" required />
+    <select [(ngModel)]="newChain" name="chain">
+      <option *ngFor="let c of chains" [ngValue]="c.value">{{ c.label }}</option>
+    </select>
+    <input [(ngModel)]="newLabel" name="label" placeholder="Label (optional)" />
+    <button type="submit">Add Wallet</button>
+  </form>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</section>
+
+<section class="wallet-table">
+  <h2>Tracked Wallets</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>Address</th>
+        <th>Chain</th>
+        <th>History</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wallet of wallets">
+        <td>{{ wallet.label || '—' }}</td>
+        <td><a [routerLink]="['/wallets', wallet.id]">{{ wallet.address }}</a></td>
+        <td>{{ chainLabel(wallet.chain) }}</td>
+        <td>
+          <button (click)="backfill(wallet.id)" [disabled]="wallet.backfillStatus === BackfillStatus.InProgress">
+            {{ backfillLabel(wallet.backfillStatus) }}
+          </button>
+        </td>
+        <td><button (click)="removeWallet(wallet.id)">Remove</button></td>
+      </tr>
+      <tr *ngIf="wallets.length === 0">
+        <td colspan="5">No wallets tracked yet.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

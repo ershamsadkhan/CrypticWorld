@@ -1,0 +1,61 @@
+.stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  flex: 1;
+  background: #f5f6fa;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.card .value {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.positive {
+  color: #1e8e3e;
+}
+
+.negative {
+  color: #c0392b;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.buy {
+  color: #1e8e3e;
+  font-weight: 600;
+}
+
+.sell {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.tx-hash {
+  font-family: monospace;
+  font-size: 0.8rem;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

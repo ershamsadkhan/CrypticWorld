@@ -1,0 +1,20 @@
+form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.error {
+  color: #c0392b;
+}

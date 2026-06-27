@@ -1,3 +1,4 @@
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -5,11 +6,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WalletTracker.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class AddQuotePnLTable : Migration
+    public partial class AddQuoteSymbolToTrades : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropIndex(
+                name: "IX_TokenPositions_WalletId_TokenAddress",
+                table: "TokenPositions");
+
+            migrationBuilder.AddColumn<string>(
+                name: "QuoteSymbol",
+                table: "Trades",
+                type: "nvarchar(32)",
+                maxLength: 32,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "QuoteSymbol",
+                table: "TokenPositions",
+                type: "nvarchar(32)",
+                maxLength: 32,
+                nullable: false,
+                defaultValue: "");
+
             migrationBuilder.CreateTable(
                 name: "QuotePnLs",
                 columns: table => new
@@ -34,6 +55,12 @@ namespace WalletTracker.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_TokenPositions_WalletId_TokenAddress_QuoteSymbol",
+                table: "TokenPositions",
+                columns: new[] { "WalletId", "TokenAddress", "QuoteSymbol" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_QuotePnLs_WalletId_QuoteSymbol",
                 table: "QuotePnLs",
                 columns: new[] { "WalletId", "QuoteSymbol" },
@@ -45,6 +72,24 @@ namespace WalletTracker.Infrastructure.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "QuotePnLs");
+
+            migrationBuilder.DropIndex(
+                name: "IX_TokenPositions_WalletId_TokenAddress_QuoteSymbol",
+                table: "TokenPositions");
+
+            migrationBuilder.DropColumn(
+                name: "QuoteSymbol",
+                table: "Trades");
+
+            migrationBuilder.DropColumn(
+                name: "QuoteSymbol",
+                table: "TokenPositions");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TokenPositions_WalletId_TokenAddress",
+                table: "TokenPositions",
+                columns: new[] { "WalletId", "TokenAddress" },
+                unique: true);
         }
     }
 }
